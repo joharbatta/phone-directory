@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import './AddSubscriber.css';
+import { Link } from 'react-router-dom';
 
 class AddSusbscriber extends Component {
     constructor() {
@@ -17,18 +18,27 @@ class AddSusbscriber extends Component {
         state[e.target.name] = e.target.value;
         this.setState(state);
     }
+
+    onFormSubmitted = (e) => {
+        e.preventDefault();
+        this.props.addSubscriberHandler(this.state);
+        this.setState({ id: 0, name: '', phone: ' ' });
+        this.props.history.push("/");
+    }
     render() {
         const {name, phone} = this.state;
         return (
             <div>
                 <Header heading="Add Subscriber" />
                 <div className="component-body-container">
+                    <Link to="/">
                     <button className="custom-btn">Back</button>
+                    </Link>
 
-                    <form className="subscriber-form">
-                        <label htmlFor="name" className="label-control">Name: </label><br/>
+                    <form className="subscriber-form" onSubmit={this.onFormSubmitted.bind(this)}>
+                        <label htmlFor="name" className="label-control">Name: </label><br />
                         <input id="name" type="text" className="input-control" name="name" onChange={this.inputChangedHandler}/><br/><br/>
-                        <label htmlFor="phone" className="label-control">Phone: </label><br/>
+                        <label htmlFor="phone" className="label-control">Phone: </label><br />
                         <input id="phone" type="text" className="input-control" name="phone" onChange={this.inputChangedHandler}/><br/><br/>
 
                         <div className="subscriber-info-container">
@@ -45,4 +55,4 @@ class AddSusbscriber extends Component {
     }
 }
 
-export default AddSusbscriber
+export default AddSusbscriber;
