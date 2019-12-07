@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Header from './Header.js';
-import './App.css';
+import './ShowSubscribers.css';
 
 class App extends Component {
-  constructor() {
+  constructor() {  
     super();
     this.state = {
       subscribersListToShow: []
